@@ -1,0 +1,667 @@
+﻿<style type="text/css">
+.glyphicon-remove:hover{
+    color: #c9302c !important;
+}
+</style>
+<!-- Breadcrumbs -->
+<div class="breadcrumbsR">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">My Profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--middle content -->
+<div ng-controller="MyProfileController">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="nav2 nav2-tabs">
+                        <li class="active" style="width:33%">
+                            <a data-toggle="tab" data-target="#Profile" style="font-weight:bold;font-size:16px;cursor:pointer">
+                                Profile
+                            </a>
+                        </li>
+                        <li style="width:33%">
+                            <a data-toggle="tab" data-target="#Products" style="font-weight:bold;font-size:16px;cursor:pointer">
+                                Products
+                            </a>
+                        </li>
+                        <li style="width:33%">
+                            <a data-toggle="tab" data-target="#Certifications" style="font-weight:bold;font-size:16px;cursor:pointer">
+                                Certifications
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!--#Tab A -->
+                        <div id="Profile" class="tab-pane fade in active">
+                            <div class="woocommerce  push-down-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12  col-sm-6" style="padding: 0px 40px;">
+                                            <form method="post" ng-submit="UpdateCompanyInfo()">
+                                                <div>
+                                                    <h3>
+                                                        <span class="light">Company Info</span>
+                                                        <a class="btn btn-mini--transition" ng-click="EditCompanyInfo='yes'" ng-hide="EditCompanyInfo==='yes'" style="color: #0099CC;">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                            <span class="single-product__btn-text">Edit</span>
+                                                        </a>
+                                                    </h3>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10" style="text-align: right;" ng-hide="EditCompanyInfo!='yes'">
+                                                        <input type="submit" value="Save" class="btn  btn-primary" />
+                                                        <input type="button" value="Cancel" class="btn  btn-primary" ng-click="EditCompanyInfo='cancel'" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Company Name </label>
+                                                            <input ng-model="companyData.ComName" type="text" name="ComName" class="input-text" ng-readonly="EditCompanyInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Company Address </label>
+                                                            <input ng-model="companyData.ComAddress" type="text" name="ComAddress" class="input-text" ng-readonly="EditCompanyInfo!='yes'" />
+
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>City </label>
+                                                            <input ng-model="companyData.ComCity" type="text" name="ComCity" class="input-text" ng-readonly="EditCompanyInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>Zip Code </label>
+                                                            <input ng-model="companyData.ComZip" type="number" name="ComZip" class="input-text" ng-readonly="EditCompanyInfo!='yes'" /><!--onfocus="this.type='number';"-->
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>State</label>
+                                                            <select ng-model="companyData.ComState" ng-options="state for state in states track by state"
+                                                                    ng-init="ContactInfo.CompanyState=states[0]" name="ComState" class="input-text" ng-disabled="EditCompanyInfo!='yes'"></select>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>Country  </label>
+                                                            <input ng-model="companyData.ComCountry" type="text" name="ComCountry" class="input-text" readonly />
+
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Webiste URL  </label>
+                                                            <input ng-model="companyData.URL" type="url" name="URL" class="input-text" ng-readonly="EditCompanyInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Industry </label>
+                                                            <!--<input type="text" name="Industry" class="input-text" readonly />-->
+                                                            <select ng-model="companyData.Industry" name="Industry" class="input-text" ng-disabled="EditCompanyInfo!='yes'">
+                                                                <option ng-repeat="(category, nameList) in ProductCategories" value="{{category}}" ng-bind="category"></option>
+                                                            </select>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Introduction  </label>
+                                                            <textarea name="introduction" ng-model="companyData.AboutCompany" class="input-text" rows="6" style="resize: none;" ng-readonly="EditCompanyInfo!='yes'"></textarea>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Company Capabilty </label>
+                                                            <textarea name="capability" ng-model="companyData.ComCap" class="input-text" rows="6" style="resize: none;" ng-readonly="EditCompanyInfo!='yes'"></textarea>
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-xs-12  col-sm-6" style="padding: 0px 40px;">
+                                            <form method="post" ng-submit="UpdateContactInfo()">
+                                                <div>
+                                                    <h3>
+                                                        <span class="light">Contact Info</span>
+                                                        <a class="btn btn-mini--transition" ng-click="EditContactInfo='yes'" ng-hide="EditContactInfo==='yes'" style="color: #0099CC;">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                            <span class="single-product__btn-text">Edit</span>
+                                                        </a>
+                                                    </h3>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10" style="text-align: right;" ng-hide="EditContactInfo!='yes'">
+                                                        <input type="submit" value="Save" class="btn  btn-primary" />
+                                                        <input type="button" value="Cancel" class="btn  btn-primary" ng-click="EditContactInfo='cancel'" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Contact Name </label>
+                                                            <input ng-model="companyData.ContactName" type="text" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Contact Address </label>
+                                                            <input ng-model="companyData.ContactAddress" type="text" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>City </label>
+                                                            <input ng-model="companyData.ContactCity" type="text" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>Zip Code </label>
+                                                            <input ng-model="companyData.ContactZip" type="number" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>State  </label>
+                                                            <select ng-model="companyData.ContactState" ng-options="state for state in states track by state"
+                                                                    ng-init="ContactInfo.CompanyState=states[0]" class="input-text" ng-disabled="EditContactInfo!='yes'"></select>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="col-xs-12  col-sm-6  push-down-10">
+                                                        <p>
+                                                            <label>Country  </label>
+                                                            <input ng-model="companyData.ContactCountry" type="text" class="input-text" readonly />
+
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Mobile Number  </label>
+                                                            <input ng-model="companyData.MobileNumber" type="number" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Phone Number  </label>
+                                                            <input ng-model="companyData.PhoneNumber" type="number" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Fax Number  </label>
+                                                            <input ng-model="companyData.FaxNumber" type="number" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10">
+                                                        <p>
+                                                            <label>Email  </label>
+                                                            <input ng-model="companyData.ContactEmail" type="email" class="input-text" ng-readonly="EditContactInfo!='yes'" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-xs-12  col-sm-12  push-down-10" style="text-align: right;" ng-hide="EditContactInfo!='yes'">
+                                                        <input type="submit" value="Save" class="btn  btn-primary"  />
+                                                        <input type="button" value="Cancel" class="btn  btn-primary"  ng-click="EditContactInfo='cancel'" />
+                                                        <input type="hidden" value="" name="ComID" class="ComID" />
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--#Tab B -->
+                        <div id="Products" class="tab-pane fade">
+                            <div class="woocommerce  push-down-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12  col-sm-12 push-down-20">
+                                            <h3>
+                                                <button class="btn btn-primary btn-mini--transition addKosherCertificate" 
+                                                data-toggle="collapse" data-target="#addProduct">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    <span class="single-product__btn-text">Add Product</span>
+                                                </button>
+                                            </h3>
+                                            <div class="panel-group" id="accordion">
+                                                <div class="panel  panel-default" style="border:0">
+                                                    <div id="addProduct" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <form method="post" ng-submit="AddProduct()">
+                                                                <!--Left -->
+                                                                <div class="col-xs-12  col-sm-6">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label>Product Category </label>
+                                                                                <select class="input-text" ng-model="ProductData.Category" required>
+                                                                                    <option value="">--Select--</option>
+                                                                                    <option ng-repeat="(category, name) in ProductCategories" ng-bind="category" value="{{category}}"></option>
+                                                                                    <option value="Other">Other</option>
+                                                                                </select>
+                                                                                <br />
+                                                                                <input type="text" ng-model="ProductData.otherCategory" ng-show="ProductData.Category==='Other'" placeholder="Other Product Category" class="input-text" ng-required="ProductData.Category==='Other'" />
+
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label>Product Name </label>
+                                                                                <select class="input-text" ng-model="ProductData.Name" required>
+                                                                                    <option value="">--Select--</option>
+                                                                                    <option ng-repeat="productname in ProductCategories[ProductData.Category]" ng-bind="productname" value="{{productname}}"></option>
+                                                                                    <option ng-show="ProductData.Category!==''" value="Other">Other</option>
+                                                                                </select>
+                                                                                <br />
+                                                                                <input type="text" ng-model="ProductData.otherName" ng-show="ProductData.Name==='Other'" ng-required="ProductData.Name==='Other'" placeholder="Other Product Name" class="input-text" />
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label>Packaging Type </label>
+                                                                                <select class="input-text" ng-model="ProductData.PackagingType" required>
+                                                                                    <option value="">--Select--</option>
+                                                                                    <option ng-repeat="packaging in PackagingTypes" ng-bind="packaging" value="{{packaging}}"></option>
+                                                                                    <option value="Other">Other</option>
+                                                                                </select>
+                                                                                <br />
+                                                                                <input type="text" ng-model="ProductData.otherPackaging" ng-show="ProductData.PackagingType==='Other'" ng-required="ProductData.PackagingType==='Other'" placeholder="Other Packaging Type" class="input-text" />
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label>Each unit Size </label>
+                                                                                <select class="input-text" ng-model="ProductData.Size" required>
+                                                                                    <option value="">--Select--</option>
+                                                                                    <option ng-repeat="size in Sizes" ng-bind="size" value="{{size}}"></option>
+                                                                                </select>
+                                                                                <br />
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label style="float:left">Upload Image </label><br /><br />
+                                                                                <input style="float:left;" type="file" ngf-select="ProductImage=$file"
+                                                                                       ngf-pattern="'image/*" accept="image/*" ngf-max-size="400KB" required />
+
+                                                                                <img style="max-height:100px;" ngf-src="ProductImage || 'images/upload-placeholder.jpg'">
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--Right -->
+                                                                <div class="col-xs-12  col-sm-6">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <label>Product Feature </label>
+                                                                            <ul class="woocommerce-info" style="list-style: none; -webkit-columns: 100px 2; -moz-columns: 100px 2; columns: 100px 2;">
+                                                                                <li ng-repeat="feature in Features">
+                                                                                    <input type="checkbox" class="input-radio" ng-model="FeatureModel" ng-click="SelectFeature()" />
+                                                                                    <label class="test" ng-bind="feature"></label>
+                                                                                </li>
+
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <p>
+                                                                                <label>Product Description </label>
+                                                                                <textarea ng-model="ProductData.ProductDesc" class="input-text" rows="5"></textarea>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12">
+                                                                            <div style="float:right;margin-top:30px">
+                                                                                <p>
+                                                                                    <input type="submit" class="btn btn-primary save" value="Save" />
+                                                                                    <input type="button" class="btn btn-primary cancel" value="Cancel" data-target="#addProduct" data-toggle="collapse" />                                                                               
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="productdisplay" class="col-xs-12">
+                                            <div class="col-xs-12 col-sm-12" ng-repeat="product in products" style="margin: 12px 0px;">
+                                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                                    <img style="height:200px;width:auto" ng-src="{{product.imgsrc}}" />
+                                                </div>
+                                                <div class="col-xs-12 col-sm-8 col-md-8">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <tr class="pro-name">
+                                                                <th>Product Name</th>
+                                                                <td ng-bind="product.name"></td>
+                                                            </tr>
+
+                                                            <tr class="pro-cate">
+                                                                <th>Product Category</th>
+                                                                <td ng-bind="product.category">  </td>
+                                                            </tr>
+
+                                                            <tr class="pkg-type">
+                                                                <th>Packaging Type</th>
+                                                                <td ng-bind="product.packagingType"></td>
+                                                            </tr>
+
+                                                            <tr class="unit-size">
+                                                                <th>Each Unit Size</th>
+                                                                <td ng-bind="product.size"></td>
+                                                            </tr>
+
+                                                            <tr class="pro-feature">
+                                                                <th valign="top">Product Feature</th>
+                                                                <td>
+                                                                    <ul style="-webkit-columns: 60px 3; -moz-columns: 60px 3; columns: 60px 3;padding-left: 0;list-style:none">
+                                                                        <li ng-repeat="productfeature in product.feature" ng-bind="productfeature"></li>
+                                                                    </ul>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr class="pro-desc">
+                                                                <th style="width: 35%;">Product Description</th>
+                                                                <td style="word-break: break-all" ng-bind="product.comID[0].productdesc"></td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <!--#Tab C -->
+                        <div id="Certifications" class="tab-pane fade">
+                            <div class="woocommerce  push-down-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <h3>
+                                                <span class="light">Certifications </span>
+                                                <a data-target="#AddCertificatesModal" role="button" data-toggle="modal" class="btn btn-mini--transition"
+                                                   style="color: #0099CC;">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    <span class="single-product__btn-text">Add Certificates</span>
+                                                </a>
+                                            </h3>
+                                            <div class="col-xs-12  col-sm-12  push-down-10" id="displayCert">
+                                                <div class="woocommerce-infoP" style="width: 230px;float: left;" ng-repeat="certificate in companyData.Certificates">
+                                                    <a data-target="#DeleteCertificateModal" data-toggle="modal" ng-click="deleteCert()" class="glyphicon glyphicon-remove" style="float: right;cursor: pointer;color: lightgrey;"></a>
+                                                    <div style="margin-top:20px;margin-bottom:0px; text-align: center">
+                                                        <img ng-src="images/certificates/{{certificate.name}}.jpg" style="height: 50px;" />  <br />
+                                                        <label ng-bind="certificate.name" ng-model="CertName"></label>  <br />
+                                                        <div ng-show="certificate.path">
+                                                            <a ng-href={{certificate.path}} target="_blank" style="display:block;margin-bottom:9px" ng-bind="certificate.name+'.pdf'"></a>
+                                                            <a data-target="#UploadCertificateModal" data-toggle="modal" class="changeFile" style="color: #0099CC;cursor:pointer;margin-right:10px">
+                                                                <span class="glyphicon glyphicon-pencil" style="margin-right: 2px;top: 2px;margin-top: 5px;"></span>
+                                                                <span class="single-product__btn-textS">Change file</span>
+                                                            </a>
+                                                            <a data-target="#DeleteCertificateModal" data-toggle="modal" class="deleteFile" style="color: #0099CC;cursor:pointer;margin-left:10px">
+                                                                <span class="glyphicon glyphicon-remove" style="margin-right: 2px;top: 2px;"></span>
+                                                                <span>Delete file</span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div ng-hide="certificate.path">
+                                                            <a data-target="#UploadCertificateModal" data-toggle="modal" class="btn btn-mini--transition uploadDoc" style="color: #0099CC;padding:0;margin-top:31px">
+                                                                <span class="glyphicon glyphicon-plus"></span><span class="single-product__btn-text">Upload Certificate</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Kosher Certification -->
+                                        <div class="col-xs-12 col-sm-12">
+                                            <h3>
+                                                <span class="light">Kosher Certification</span>
+                                                <a class="btn btn-mini--transition addKosherCertificate" data-toggle="collapse"
+                                                   data-target="#addKosher" style="color: #0099CC;">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    <span class="single-product__btn-text">Add Certificate</span>
+                                                </a>
+                                            </h3>
+                                            <div class="panel-group" id="accordion">
+                                                <div class="panel  panel-default" style="border:0">
+                                                    <div id="addKosher" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <!--Left -->
+                                                            <div class="col-xs-10  col-sm-12">
+                                                                <div class="row">
+                                                                    <form id="KosherForm">
+                                                                        <div class="col-xs-12  col-sm-12  push-down-10">
+                                                                            <p>
+                                                                                <label>
+                                                                                    Certification Body
+                                                                                    <abbr class="required">*</abbr>
+                                                                                </label>
+                                                                                <input type="text" name="CertifyingBody" class="input-text" required />
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12  push-down-10">
+                                                                            <p>
+                                                                                <label>Upload Kosher Certificate </label>
+                                                                                <input type='file' name="kosherCertificate" class="input-text" required />
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-xs-12  col-sm-12  push-down-10">
+                                                                            <div class="push-top-30" align="right">
+                                                                                <p>                        
+                                                                                    <button type="submit" class="btn  btn-primary" >Save</button>
+                                                                                    <button type="button" class="btn  btn-primary"  data-target="#addKosher" data-toggle="collapse">Cancel</button>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12  col-sm-12  push-down-10" id="displayKosher">
+                                                <div ng-show="kosherCert.name" class="woocommerce-infoP" 
+                                                style="width: 210px;float: left;">
+                                                    <a data-target="#DeleteCertificateModal" ng-click="deleteCert()" data-toggle="modal" class="glyphicon glyphicon-remove" style="float: right;cursor: pointer;color: lightgrey;"></a>
+                                                    <p style="margin-top: 20px; text-align: center;margin-bottom:0px">
+                                                        <img ng-src="images/certificates/{{kosherCert.name}}.jpg" style="height: 50px;" /><br />
+                                                        <label ng-bind="kosherCert.name"> Kosher </label><br />
+                                                        <b>Certified by</b><br />
+                                                        <span ng-bind="companyData.CertiBody" ng-show="companyData.CertiBody" style="width:inherit"></span>
+
+                                                        <div ng-show="kosherCert.path">
+                                                            <a ng-href={{kosherCert.path}} target="_blank" style="display:block" ng-bind="kosherCert.name+'.pdf'"></a>
+                                                            <a data-target="#UploadCertificateModal" data-toggle="modal" class="changeFile" style="color: #0099CC;cursor:pointer">
+                                                                <span class="glyphicon glyphicon-pencil" style="margin-right: 2px;top: 2px;margin-top: 5px;"></span>
+                                                                <span class="single-product__btn-textS">Change file</span>
+                                                            </a>
+                                                            <a data-target="#DeleteCertificateModal" data-toggle="modal" class="deleteFile" style="color: #0099CC;cursor:pointer">
+                                                                <span class="glyphicon glyphicon-remove" style="margin-right: 2px;top: 2px;"></span>
+                                                                <span>Delete file</span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div ng-hide="kosherCert.path">
+                                                            <a data-target="#UploadCertificateModal" data-toggle="modal" class="btn btn-mini--transition uploadDoc" style="color: #0099CC;padding:0;margin-top:21px">
+                                                                <span class="glyphicon glyphicon-plus"></span><span class="single-product__btn-text">Upload Certificate</span>
+                                                            </a>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Kosher Certification end -->
+                                        
+                                        <!--Other Documents -->
+                                        <div class="col-xs-12 col-sm-12">
+                                            <h3>
+                                                <span class="light">Other Certificates </span>
+                                                <a data-target="#UploadCertificateModal" data-toggle="modal" class="btn btn-mini--transition uploadDoc" style="color: #0099CC;">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    <span class="single-product__btn-text">Add Documents</span>
+                                                </a>
+                                                <label style="display: none">otherdocs</label>
+                                            </h3>
+                                            <div class="col-xs-12  col-sm-12  push-down-10" id="docList">
+                                                <div class="col-md-5S woocommerce-infoS" ng-repeat="document in Documents">
+                                                    <button type="button" class="close deleteDoc" data-dismiss="modal" aria-hidden="true">
+                                                        <a data-target="#DeleteCertificateModal" ng-click="deleteCert()" 
+                                                        data-toggle="modal" class="btn btn-mini--transition" style="color: #0099CC;">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                            <span class="single-product__btn-text">Delete</span>
+                                                        </a>
+                                                    </button>
+                                                    <p style="margin-top: 5px; margin-left: 10px;">
+                                                        <a ng-href=" {{document.location}} " target="_blank" ng-bind="document.name"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Certificates-->
+    <div class="modal  fade" id="AddCertificatesModal" tabindex="-1" role="dialog" aria-labelledby="AddCertificatesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content  center" style="text-align:center">
+                <div class="modal-header" style="border-bottom: 0;padding: 15px 30px 0;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 style="font-weight:400;margin-top: 36px;margin-bottom: 22px;"><span class="light">Add Certificates</span></h3>
+                    <hr class="divider">
+                </div>
+                <div class="modal-body" style="overflow: auto;">
+                    <p style="text-align:left">
+                        <label>Select Certificates : </label>
+                    </p>
+
+                    <div class="col-xs-12" align="left">
+                        <form ng-submit="AddCertSubmit()">
+                            <ul style="list-style: none; -webkit-columns: 100px 2; -moz-columns: 100px 2; columns: 100px 2;">
+                                <li ng-repeat="certificate in certificatesList">
+                                    <input type="checkbox" ng-value="certificate" ng-click="SelectCert()" class="input-radio">
+                                    <label class="test" ng-bind="certificate"></label>
+                                </li>
+                            </ul>
+                            <div style="text-align:center">                                
+                                <button type="submit" class="btn  btn-primary">ADD</button>
+                                <button type="button" class="btn  btn-primary cancelADD" data-dismiss="modal" aria-hidden="true">CANCEL</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--<button type="submit" class="btn  btn-primary">ADD</button> <button type="button" class="btn  btn-primary" data-dismiss="modal" aria-hidden="true">CANCEL</button>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal Delete Certificate-->
+    <div class="modal  fade" id="DeleteCertificateModal" tabindex="-1" role="dialog" aria-labelledby="DeleteCertificateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content  center" style="text-align:center">
+                <div class="modal-header" style="border-bottom: 0;padding: 15px 30px 0;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 style="font-weight:400;margin-top: 36px;margin-bottom: 22px;"><span class="light">Delete Certificate</span></h3>
+                    <hr class="divider">
+                </div>
+                <div class="modal-body">
+                    <form method="post" ng-submit="DeleteModelSubmit()">
+                        <div style="display: inline-block;margin-bottom: 10px;">
+                            <span style="background: url(images/icons/warning-icon.png) no-repeat; float: left; height: 16px; width: 16px; margin-right: 5px;"></span>
+                            <label>Are you sure you want to delete <b>{{CertToDelete.name}}</b> Certificate?</label>
+                        </div><br />                        
+                        <button  type="submit" class="btn  btn-danger">YES</button>
+                        <button  type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">NO</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Upload Certificate-->
+    <div class="modal  fade" id="UploadCertificateModal" tabindex="-1" role="dialog" aria-labelledby="UploadCertificateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="text-align:center">
+                <div class="modal-header" style="border-bottom: 0;padding: 15px 30px 0;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 style="font-weight:400;margin-top: 36px;margin-bottom: 22px;"><span class="light">Upload Certificate</span></h3>
+                    <hr class="divider">
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" class="push-down-15">
+                        <input type="file" name="uploadCert" class="input-text" required /><br />
+                        <label style="font-weight:bold">Note: PDF file less than 400kb is allowed.</label><br />
+                        <input type="hidden" value="" name="ComName" class="ComName" />
+                        <input type="hidden" value="" name="certName" class="certName" />
+                        <div style="margin:10px 0px">
+                            <button type="submit" class="btn  btn-primary" >UPLOAD</button>
+                            <button type="button" class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">CANCEL</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Delete Product Modal-->
+    <div class="modal  fade" id="DeleteProductModal" tabindex="-1" role="dialog" aria-labelledby="DeleteCertificateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content  center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3><span class="light">Delete Product</span></h3>
+                    <hr class="divider">
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <label><span style="background: url(images/icons/warning-icon.png) no-repeat; float: left; height: 16px; width: 16px; margin-right: 5px;"></span>Are you sure you want to delete this Product?</label>
+                    </p>
+                    <button type="submit" class="btn deleteYes btn-primary">YES</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">NO</button>
+                    <input type="hidden" name="productID" value="" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

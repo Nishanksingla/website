@@ -1,0 +1,67 @@
+﻿<div class="breadcrumbsR">
+    <div class="container">
+        <div class="row" style="font-size:1.2em">
+            <div class="col-xs-12">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Co-Packaging By Company</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-controller="CompaniesController">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-2 sidebar-offcanvas" id="sidebar">
+            <div class="row" style="font-size:1.2em">
+                <!--filters-->
+                <div class="col-xs-12 col-md-12" style="padding:15px">
+
+                    <h3 style="margin-top:0">States</h3>
+
+                    <a style="cursor:pointer;display:block" ng-click="clearAllStates()">Clear All</a>
+                    <input type="text" ng-model="StateName" style="width:100%" placeholder="Search by State" />
+                    <ul style="height: 240px;overflow: auto;list-style:none;padding:0">
+                        <li ng-repeat="state in states | filter:StateName" style="margin:5px 0px">
+                            <input type="checkbox" ng-model="stateChkbx" ng-click="selectCompany()" value={{state}}>{{state}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-12" style="padding:15px;">
+
+                    <h3 style="margin-top:0">Certificates</h3>
+                    <a style="cursor:pointer;display:block" ng-click="clearAllCertificates()">Clear All</a>
+                    <ul style="height: 240px;overflow: auto;list-style:none;padding:0">
+                        <li ng-repeat="certificate in certificates" style="margin:5px 0px">
+                            <input type="checkbox" ng-model="certificateChkbx" ng-click="selectCompany()" value={{certificate}}>{{certificate}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-xs-12 col-sm-6" style="min-height:700px">
+            <div class="row" style="font-size:1.2em">
+                <div class="col-xs-12 col-sm-12">
+                    <p class="pull-left visible-xs">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas" style="height: 30px;width: 70px;font-size: 15px;">Filters</button>
+                    </p>
+                </div>
+                <div style="text-align:right">
+                    <h4 style="margin-right: 15px;">Total Companies found: <span ng-model="companyCount" ng-bind="companyCount"></span></h4>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom:25px;border-bottom: 2px dashed lightgray;" ng-repeat="company in companies">
+                    <a href="CompanyProfile.html?CompanyId={{company._id}}" style="color:inherit;">
+                        <h1 ng-bind="company.ComName"></h1>
+                        <p ng-bind="company.AboutCompany"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
+</div>

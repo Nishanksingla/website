@@ -1,0 +1,87 @@
+﻿<div class=breadcrumbsR>
+    <div class=container>
+        <div class=row style="font-size:1.2em">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <nav>
+                    <ol class=breadcrumb>
+                        <li><a href=index.html>Home</a></li>
+                        <li class=active>Co-Packaging By Product</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-controller="ProductsController">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas" id="sidebar">
+            <div class="row" style="font-size:1.2em">
+                <!--filters-->
+                <div class="col-xs-12 col-md-12" style="padding:15px">
+                    <!--Product Filter-->
+                    <h3 style="margin-top:0">Product Categories</h3>
+                    <a style="cursor:pointer" ng-click="clearAllProducts($event)">Clear All</a>
+                    <ul style="height: 230px;overflow: auto;list-style:none;padding:0">
+                        <li ng-repeat="(category, names) in productFilter" class="dropdown" style="margin:5px 0px">
+                            <input type="checkbox" ng-model="categoryChkbx" ng-click="productSelection($index)" ng-bind="category"><label ng-bind="category"></label>
+                            <ul ng-show="hide_show[$index]" style="list-style:none;padding-left:15px;width: 95%;border: none;box-shadow: none;position:relative;padding-top:0;margin-top:0">
+                                <li ng-repeat="name in names | filter:notEmptyOrNull">
+                                    <input type="checkbox" ng-model="nameChkbx" ng-click="productSelection()" ng-bind="name"><label ng-bind="name"></label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-12" style="padding:15px">
+                    <!--Packaging Filter-->
+                    <h3 style="margin-top:0">Packaging Types</h3>
+                    <a style="cursor:pointer" ng-click="clearAllPackaging()" data-info=size>Clear All</a>
+                    <ul style="height: 240px;overflow: auto;list-style:none;padding:0">
+                        <li ng-repeat="packing in packagingFilter | orderBy:packing" style="margin:5px 0px">
+                            <input type="checkbox" ng-model="packingChkbx" ng-click="productSelection()" ng-bind="packing"><label ng-bind="packing"></label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-12" style="padding:15px">
+                    <!--Size Filter-->
+                    <h3 style="margin-top:0">Size</h3>
+                    <a style="cursor:pointer" ng-click="clearAllSizes()">Clear All</a>
+                    <ul style="height: 240px;overflow: auto;list-style:none;padding:0">
+                        <li ng-repeat="size in sizesList" style="margin:5px 0px">
+                            <input type=checkbox ng-model="sizeChkbx" ng-click="productSelection()" ng-bind="size" /><label ng-bind="size"></label>
+                            <br />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <p class="pull-left visible-xs">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas" style="height: 30px;width: 70px;font-size: 15px;">Filters</button>
+                    </p>
+                </div>
+                <div style="text-align:right">
+                    <h4 style="margin-right: 15px;">Total Products found: <span ng-model="productCount" ng-bind="productCount"></span></h4>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4" style="margin-bottom:25px" ng-repeat="item in products">
+                    <a href="Companies.html?productID={{item._id}}">
+                        <figure style="text-align:center;border: 1px solid #d5d4d4;background: #e5e5dc;">
+                            <img class="img-responsive img-thumbnail" ng-src={{item.imgsrc}} style="border:none;width:100%;height:auto" />
+                            <figcaption style="text-decoration:none;text-align:left;font-size: 1em;margin:0px 15px;">
+                                <span ng-bind="item.packagingType"></span>
+                                <br />
+                                <span ng-bind="item.size"></span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
+</div>

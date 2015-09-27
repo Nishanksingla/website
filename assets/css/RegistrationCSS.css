@@ -1,0 +1,101 @@
+﻿            .woocommerce .input-text {
+            color: #413c35;
+        }
+.woocommerce .required {
+        color: #fe6e3a;
+    }
+
+.woocommerce {
+    border-radius: 20px;
+}
+
+    .woocommerce .woocommerce-info {
+        border: 1px solid #e5e5dc;
+        background-color: #f3f2eb;
+        padding: 10px;
+        border-radius: 2px;
+    }
+
+    .woocommerce .woocommerce-infoS {
+        border: 1px solid #e5e5dc;
+        background-color: #fff;
+        padding: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 2px;
+    }
+
+    .woocommerce .input-text {
+        display: block;
+        border: 1px solid #e5e5dc;
+        border-radius: 2px;
+        background-color: #f3f2eb;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .woocommerce .form-row, .woocommerce .form-rowL {
+        margin: 20px 0 0;
+    }
+
+@media (min-width:768px) {
+    .woocommerce .form-row {
+        margin: 40px 0 0;
+        float: right;
+    }
+
+    .woocommerce .form-rowL {
+        margin: 30px 190px 0 40px;
+        float: right;
+    }
+}
+
+.woocommerce .order_details {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .woocommerce .order_details strong {
+        display: block;
+        text-transform: none;
+        color: #b1b0a7;
+        font-size: 11px;
+    }
+
+    .woocommerce .order_details .date, .woocommerce .order_details .method, .woocommerce .order_details .order, .woocommerce .order_details .total {
+        display: block;
+        margin: 0 10px 5px 0;
+        padding: 0 10px 0 0;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+
+@media (min-width:768px) {
+    .woocommerce .order_details .date, .woocommerce .order_details .method, .woocommerce .order_details .order, .woocommerce .order_details .total {
+        display: inline-block;
+        border-right: 1px dashed #b1b0a7;
+    }
+}
+
+.woocommerce .woocommerce-infoP {
+    border: 1px solid #e5e5dc;
+    background-color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+.push-down-10 {
+            margin-bottom: 10px;
+        }
+        .woocommerce .light {
+            font-weight:400;
+        }
+        .woocommerce label {
+            font-weight:700;
+        }
+        .woocommerce h3 {
+            margin:10px 0px 20px 0px;
+        }
+

@@ -1,0 +1,85 @@
+﻿.dropdown2 {
+    float: right;
+    /*margin-left: 4em;*/
+    /*margin-top: 1em;*/
+    /*margin-right: 2em;*/
+    font-size: 16px;
+font-weight: normal;
+margin-top: 12px;
+    /*position: absolute;*/
+}
+
+
+div.submenu2 {
+    background: #fff;
+    /*position: relative;*/
+    float: right;
+    border: 1px solid lightgray;
+    position: absolute;
+    width: 100px;
+    z-index:200;
+}
+.root li:before {
+              content: '';
+              display: inline-block;
+              border-left: 7px solid transparent;
+              border-right: 7px solid transparent;
+              border-bottom: 7px solid #d6d2d3;
+              position: absolute;
+              top: -7px;
+              right: 6px;
+          }
+
+          .root li:after {
+              content: '';
+              display: inline-block;
+              border-left: 6px solid transparent;
+              border-right: 6px solid transparent;
+              border-bottom: 6px solid #fff;
+              position: absolute;
+              top: -6px;
+              right: 7px;
+          }
+.dropdown2 li a {
+    color: #555555;
+    display: block;
+    /*font-family: arial;
+    font-weight: bold;*/
+    padding: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    font-weight:normal;
+    text-decoration: none;
+}
+
+.dropdown2 li a:hover {
+    /*background: rgb(24,180,231);
+   color: #FFFFFF;
+   text-decoration: none;*/
+    background-color: #F2F2F2;
+    color: #06C;
+}
+
+a.account {
+    font-size: 1em;
+    color: black;
+    display: block;
+    height: 28px;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+.account:hover {
+    color:black;
+    text-decoration:underline;
+}
+
+.root {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    font-size: .8em;
+    z-index:200;
+    cursor:pointer;
+}

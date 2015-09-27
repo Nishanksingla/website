@@ -1,0 +1,351 @@
+﻿<style type="text/css">
+input[type="text"],input[type="number"]{
+    font-size: 1.2em !important
+}
+</style>
+
+<div class="breadcrumbsR">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Registration</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post" ng-controller="RegistrationController" ng-submit="RegisterFormSubmit()">
+
+    <div class="woocommerce  push-down-10">
+        <div class="container">
+            <div class="row push-down-10">
+                
+                <div class="col-xs-12">
+                    <h3>Registration</h3>
+                    <hr>
+                    <div class="accounttype">
+                        <p class="woocommerce-info">
+                            <label>Your are : </label>
+                            <input type="radio" ng-model="radio" name="account" checked />
+                            <label for="Supplier">Supplier</label>
+                            <input type="radio" value="buyer" ng-model="radio" name="account" />
+                            <label for="Buyer">Buyer</label>
+                        </p>
+                    </div>
+                </div>
+
+                <!--Left -->
+
+                <div class="col-xs-12 col-sm-6">
+                    <h3><u><span class="light">Company</span></u> Info</h3>
+                    <div class="row">
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Company Name
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.CompanyName" class="input-text" required />
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Company Address
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.CompanyAddress" class="input-text" ng-required="radio != 'buyer'" />
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    City
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.CompanyCity" class="input-text" ng-required="radio != 'buyer'">
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    Zip Code
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.CompanyZip" onfocus="this.type='number';" class="input-text" ng-required="radio != 'buyer'">
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    State
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <select ng-options="state for state in states track by state"
+                                        ng-model="RegistrationData.CompanyState" ng-init="RegistrationData.CompanyState=states[0]"
+                                        class="input-text" ng-required="radio != 'buyer'"></select>
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    Country
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <select ng-model="RegistrationData.CompanyCountry" class="input-text" required>
+                                    <option value="">Select a Country</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Company Introduction
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <textarea ng-model="RegistrationData.AboutCompany" class="input-text" rows="5" ng-required="radio != 'buyer'"></textarea>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Website Url
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <input placeholder="http://www.abcd.com" type="url" ng-model="RegistrationData.WebURL"
+                                       class="input-text" ng-required="radio != 'buyer'">
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Industry Type
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <select class="input-text" ng-model="RegistrationData.Industry" ng-required="radio != 'buyer'">
+                                    <option value="">Select an Industry</option>
+                                    <option ng-repeat="(Industry, names) in Industries" ng-bind="Industry" value="{{Industry}}"></option>
+                                </select>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Company Capability
+                                    <abbr class="required supplier" ng-hide="radio === 'buyer'">*</abbr>
+                                </label>
+                                <textarea ng-model="RegistrationData.CompanyCapability" class="input-text" rows="6" ng-required="radio != 'buyer'"></textarea>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Right -->
+
+                <div class="col-xs-12  col-sm-6">
+                    <p class="form-row">
+                        <input class="input-checkbox" ng-change="change()" ng-model="sameAsAbove" type="checkbox">
+                        Address same as Company Address.
+                    </p>
+                    <h3><u><span class="light">Contact</span></u> Info</h3>
+                    <div class="row">
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Contact Name
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.ContactName" class="input-text" required />
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>
+                                    Contact Address
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.ContactAddress" class="input-text" required />
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    City
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.ContactCity" class="input-text" required>
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    Zip Code
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="text" ng-model="RegistrationData.ContactZip" onfocus="this.type='number';" class="input-text" required>
+                            </p>
+                        </div>
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    State
+                                    <abbr class="required">*</abbr>
+                                </label>                                
+                                <select ng-options="state for state in states track by state"
+                                        ng-model="RegistrationData.ContactState"
+                                        ng-init="RegistrationData.ContactState=states[0]"
+                                        class="input-text" ng-required="radio != 'buyer'">
+                                </select>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-6  push-down-10">
+                            <p>
+                                <label>
+                                    Country
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <select ng-model="RegistrationData.ContactCountry" class="input-text" required>
+                                    <option value="" selected>Select a Country</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Canada">Canada</option>
+                                </select>                                
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6" style="margin: 10px 0px;">
+                                    <label style="font-size:initial">Primary Phone
+                                        <abbr class="required">*</abbr>
+                                    </label>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <select class="input-text" required ng-model="PrimaryPhone">
+                                        <option value="">--Select--</option>
+                                        <option value="Office" selected>Office</option>
+                                        <option value="Mobile">Mobile</option>
+                                    </select>
+                                </div>
+
+                            </div>                           
+                        </div>
+                        <!--onfocus="this.type='number';"-->
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>Office Number
+                                    <abbr ng-show="PrimaryPhone==='Office'" class="required">*</abbr>
+                                </label>
+                                <input type="number" ng-required="PrimaryPhone==='Office'" ng-model="RegistrationData.OfficeNumber" class="input-text">
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>Mobile Number
+                                    <abbr ng-show="PrimaryPhone==='Mobile'" class="required">*</abbr>
+                                </label>
+                                <input type="number" ng-required="PrimaryPhone==='Mobile'" ng-model="RegistrationData.MobileNumber" class="input-text">
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-sm-12  push-down-10">
+                            <p>
+                                <label>Fax Number  </label>
+                                <input type="number" ng-model="RegistrationData.FaxNumber" class="input-text">
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12">
+                            <label>Company's logo</label><br />
+                            <input style="float:left;padding:30px" type="file" ngf-select="upload($file)" ng-model="picFile" ngf-pattern="'image/*" accept="image/*" ngf-max-size="400KB" />
+
+                            <div style="float:right;margin:0em 1em">
+                                <img style="max-height:100px;" ngf-src="logo || 'images/upload-placeholder.jpg'">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+
+                <!-- Certifications -->
+               
+
+                <div class="col-xs-12" ng-hide="radio === 'buyer'" style="margin-bottom:20px">
+                    <h3><u>Certifications</u></h3>
+                    
+                    <div class="col-xs-12 woocommerce-info">
+                        <div class="col-md-4" ng-repeat="certificate in certificates">
+                            <input type="checkbox" ng-model="Cert" ng-click="certCheck()" ng class="input-radio">
+                            <label class="test" ng-bind="certificate"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 woocommerce-info">
+                        <div class="col-md-6">
+                            <label style="float: left; margin-left: 25px">Kosher Certification </label>
+                            <input style="float: left; margin: 4px 10px;" type="checkbox" ng-model="checked" />
+                            <label style="float: left" for="kosher" class="checkbox"></label>
+                            <input style="float: left" type="text" ng-readonly="!checked" ng-focus="checked==='true'" placeholder="Certifying Body" />
+                        </div>
+
+                    </div>
+               
+
+                </div>
+
+                <div class="col-xs-12 col-md-12">
+                    <h3><u><span class="light">Sign Up</span></u> Info</h3>
+                    <div class="row">
+                        <div class="col-xs-12  col-md-12  push-down-10">
+                            <p>
+                                <label>
+                                    Username (Contact Email)
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="email" ng-model="RegistrationData.ContactEmail" class="input-text" required>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-md-6  push-down-10">
+                            <p>
+                                <label>
+                                    Password
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="password" ng-model="RegistrationData.Password" class="input-text" required>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12  col-md-6  push-down-10">
+                            <p>
+                                <label>
+                                    Confirm Password
+                                    <abbr class="required">*</abbr>
+                                </label>
+                                <input type="password" ng-model="RegistrationData.ConfirmPassword" class="input-text" required>
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="push-top-30" style="text-align:center">
+                <button type="submit" style="color: #fff;background-color: orangered;border-color: orangered;" class="btn  btn-warning">Register</button>
+            </div>
+        </div>
+    </div>
+</form>

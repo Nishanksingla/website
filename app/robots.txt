@@ -1,0 +1,16 @@
+User-agent: bingbot
+Disallow: /
+
+Crawl-delay:30
+
+User-agent: dotbot
+Disallow: /
+
+User-Agent: *
+Disallow: 
+
+User-Agent: Googlebot-Image
+Disallow: /
+
+User-Agent: Mediapartners-Google
+Disallow: /

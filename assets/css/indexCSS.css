@@ -1,0 +1,141 @@
+﻿
+        .products-navigation {
+            position: relative;
+            padding: 2% 0;
+            text-align: center;
+        }    
+        .products-navigation__title {
+            background-color: #fff;
+            display: inline-block;
+            padding-right: 10px;
+        }
+
+        .products-navigation__arrows .glyphicon-circle {
+            border-color: #b1b0a7;
+            color: #b1b0a7;
+            -webkit-transition: .1s linear;
+            transition: .1s linear;
+            -webkit-transition-property: color,border-color;
+            transition-property: color,border-color;
+        }
+
+        .glyphicon.glyphicon-circle {
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 28px;
+            border: 2px solid #b1b0a7;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .products__single {
+            border: 1px solid #d5d4d4;
+            background: #e5e5dc;
+            margin-bottom: 40px;
+        }
+
+        .product__image {
+            width: 100%;
+            height: auto;
+        }
+
+        .products__title {
+            margin: 3px 15px 5px;
+            font-size: 13px;
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #413c35;
+        }
+
+        .products__title a {
+            color: #413c35;
+        }
+
+        .products__category {
+            margin: 3px 15px 5px;
+            font-family: Arvo,Georgia,Times,serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: #504d4d;
+            text-transform: uppercase;
+        }
+
+        .main__title {
+            width: 100%;
+            text-align: center;
+        }
+
+        .main__title__text {
+            display: inline-block;
+            padding: 0 10px;
+            margin: 60px 0;
+            background-color: #fff;
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #413c35;
+            font-size: 22px;
+        }
+
+        .main__title:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background-color: #e5e5dc;
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            left: 0;
+        }
+
+        @media (min-width: 768px) {
+            .products-navigation {
+                text-align: left;
+            }
+
+            .products-navigation__arrows {
+                background-color: #fff;
+                float: right;
+                padding-left: 10px;
+            }
+
+            .products-navigation:after {
+                z-index: -1;
+                position: absolute;
+                content: "";
+                border-bottom: 1px solid #e5e5dc;
+                left: 0;
+                right: 0;
+                top: 50%;
+            }
+        }
+
+        .push-down-15 {
+            margin-bottom: 15px;
+        }
+
+        .banners {
+            background: #f3f2eb;
+        }
+
+        .banners-box {
+            padding: 25px 0 25px 25px;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+            color: #b1b0a7;
+            line-height: 1.35;
+        }
+
+        .banners-box .glyphicon--banners {
+            display: block;
+            font-size: 30px;
+            float: left;
+            margin: 0 10px 0 0;
+        }
+
+        .banners-box .banners__title {
+            font-family: Arvo,Georgia,Times,serif;
+            display: block;
+        }

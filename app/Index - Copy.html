@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Co-Packaging</title>
+    <base href="/">
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8" />
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link href="images/icons/favicon.ico" rel=" shortcut icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    
+    <script async data-main="main.js" src="js/require.js"></script>
+
+    <style>
+
+        label {
+            font-weight: normal;
+            display: initial;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+        }
+        .products-navigation {
+            position: relative;
+            padding: 2% 0;
+            text-align: center;
+        }
+
+        h3 {
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 1.1;
+            color: #413c35;
+            margin: 0;
+            line-height: 32px;
+        }
+
+        .products-navigation__title {
+            background-color: #fff;
+            display: inline-block;
+            padding-right: 10px;
+        }
+
+        .products-navigation__arrows .glyphicon-circle {
+            border-color: #b1b0a7;
+            color: #b1b0a7;
+            -webkit-transition: .1s linear;
+            transition: .1s linear;
+            -webkit-transition-property: color,border-color;
+            transition-property: color,border-color;
+        }
+
+        .glyphicon.glyphicon-circle {
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 28px;
+            border: 2px solid #b1b0a7;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .products__single {
+            border: 1px solid #d5d4d4;
+            background: #e5e5dc;
+            margin-bottom: 40px;
+        }
+
+        .product__image {
+            width: 100%;
+            height: auto;
+        }
+
+        .products__title {
+            margin: 3px 15px 5px;
+            font-size: 13px;
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #413c35;
+        }
+
+        .products__title a {
+            color: #413c35;
+        }
+
+        .products__category {
+            margin: 3px 15px 5px;
+            font-family: Arvo,Georgia,Times,serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: #504d4d;
+            text-transform: uppercase;
+        }
+
+        .main__title {
+            width: 100%;
+            text-align: center;
+        }
+
+        .main__title__text {
+            display: inline-block;
+            padding: 0 10px;
+            margin: 60px 0;
+            background-color: #fff;
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #413c35;
+            font-size: 22px;
+        }
+
+        .main__title:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background-color: #e5e5dc;
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            left: 0;
+        }
+
+        @media (min-width: 768px) {
+            .products-navigation {
+                text-align: left;
+            }
+
+            .products-navigation__arrows {
+                background-color: #fff;
+                float: right;
+                padding-left: 10px;
+            }
+
+            .products-navigation:after {
+                z-index: -1;
+                position: absolute;
+                content: "";
+                border-bottom: 1px solid #e5e5dc;
+                left: 0;
+                right: 0;
+                top: 50%;
+            }
+        }
+
+        .push-down-15 {
+            margin-bottom: 15px;
+        }
+
+        .banners {
+            background: #f3f2eb;
+        }
+
+        .banners-box {
+            padding: 25px 0 25px 25px;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+            color: #b1b0a7;
+            line-height: 1.35;
+        }
+
+        .banners-box .glyphicon--banners {
+            display: block;
+            font-size: 30px;
+            float: left;
+            margin: 0 10px 0 0;
+        }
+
+        .banners-box .banners__title {
+            font-family: Arvo,Georgia,Times,serif;
+            display: block;
+        }
+
+
+    </style>
+
+</head>
+<body ng-controller="indexController">
+    <header class=header>
+        <nav class="navbar navbar-default navbar-static-top" style="background-color:white;margin-bottom:0px">
+            <div class="container" style="width: auto;">
+                <div class="row" style="height:60px">
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="height:inherit;">
+                        <div class="navbar-header" style="float:none">
+                            <a class="navbar-brand" href="index.html" title="Food Co-Packaging" style="padding:0;  display: block;  float: none;">
+                                <img alt="Food Co-Packaging" src="images/icons/logo.png" style=" margin:auto">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color:maroon;padding: 0px;">
+                <div class="container" style="width: auto;">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" style="height: 37px;padding: 0px 18px;    margin: 8px 0px;">
+                            <div style="float:left">
+                                <ul style="list-style:none;margin: 0;padding-left: 0px;height: inherit;">
+                                    <li class="dropdown" style="padding: 8px 0px;">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;text-decoration:none;font-size:1.1em">
+                                            <img src="images/icons/nav.png" style="margin-right:10px">Categories
+                                        </a>
+                                        <ul id="categoriesDropdown" class="dropdown-menu" role="menu" style="left: -4px;top: 42px;max-height: 400px;overflow: auto;">
+                                            <li ng-repeat="(category, names) in categories">
+                                                <a ng-href="/#Products.html?categoryVal={{category}}">{{category}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="float:right">
+                                <ul style="list-style:none;margin: 0;padding-left: 0px;height: inherit;">
+                                    <li class="dropdown" style="padding: 8px 0px;">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;text-decoration:none;font-size:1.1em">
+                                            Co Pack/Mfg
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul id="categoriesDropdown" class="dropdown-menu" role="menu" style="left: -4px;top: 42px;min-width: 100px;">
+                                            <li><a href="/#Products.html" ng-click="ProgressBar()" style="color:black">By Product</a></li>
+                                            <li><a href="/#Companies.html" ng-click="ngProgress.start()" style="color:black">By Company</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-sm-5 col-md-7 col-lg-7" style="height: 37px;    margin: 8px 0px;">
+                            <form role="form" class="ng-pristine ng-valid">
+                                <div class="input-group">
+                                    <input name="searchtext" placeholder="Search by product/ industry" class="form-control" style="border-radius: 0px;height: 37px;">
+                                    <span class="input-group-addon" style="padding: 5px 12px;border-radius: 0px;">
+                                        <button class="mobile-navbar-form__appended-btn" type="submit"><span class="glyphicon  glyphicon-search  glyphicon-search--nav"></span></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!---->
+                        <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="margin: 8px 0px;">
+                            <div id="logoutMenus" ng-show="loginStatus==='logout'" style="height: inherit;">
+                                <div class="my-account" style="padding: 0px 6px;width: 50%;border:0;background-color:transparent">
+                                    <a href="/#Registration.html" ng-click="ProgressBar()" role="button" style="padding:0;padding: 8px 0px;color: white;font-size:1.1em">
+                                        <span style="font-family:sans-serif">Sign Up</span>
+                                    </a>
+                                </div>
+                                <div class="sign-in" style="padding: 0px 6px;width: 50%;background-color:transparent;">
+                                    <a data-target="#loginModal" id="login" role="button" data-toggle="modal" style="cursor:pointer;padding: 8px 0px;color: white;font-size:1.1em">
+                                        <span style="font-family:sans-serif">Log In</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="loginMenus" class="dropdown" style="float:right;" ng-show="loginStatus==='login'">
+                                <div class="dropdown-toggle flag" data-toggle="dropdown" role="button" aria-expanded="true" style="cursor:pointer;color:white;margin-top: 6px;">
+                                    <span style="float:left;margin-right: 10px;font-size: 16px" ng-bind="CompanyName"></span>
+                                    <span style="float:left" ng-hide="loginStatus==='logout'" class="ng-hide">
+                                        <b class="caret"></b>
+                                    </span>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu" style="min-width:100px;  border-radius: 0;top: 42px;">
+                                    <li>
+                                        <a href="/#MyProfile.html" class="glyphicon glyphicon-user" style="color:black">
+                                            <span style="font-family:sans-serif;float:right">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="logout" class="glyphicon glyphicon-log-out" ng-click="logout()" style="color:black;cursor:pointer">
+                                            <span style="font-family:sans-serif;float:right">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div ng-view></div>
+    
+    <div ng-include="'footer.html'"></div>
+    <!--<footer class=js--page-footer>
+        <div class=footer-widgets>
+            <div class=container>
+                <div class=row>
+                    <div class="col-xs-12  col-sm-3">
+                        <div class=footer-widgets__social>
+
+                            <img class=push-down-10 alt="Footer Logo" src="images/icons/logo-footer.png" width=139 height=35>
+                            <p class=push-down-15>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. </p>
+                            <a class=social-container href="#"><span class=zocial-facebook></span></a>
+                            <a class=social-container href="#"><span class=zocial-twitter></span></a>
+                            <a class=social-container href="#"><span class=zocial-email></span></a>
+                            <a class=social-container href="#"><span class=zocial-youtube></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12  col-sm-3">
+                        <nav class=footer-widgets__navigation>
+                            <div class=footer-wdgets__heading--line>
+                                <h4 class=footer-widgets__heading>Navigation</h4>
+                            </div>
+                            <ul class="nav nav-footer">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="/#AboutUs.html">About Us</a></li>
+                                <li><a href="/#ContactUs.html">Contact Us</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Sitemap</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-xs-12  col-sm-3">
+                        <div class=footer-widgets__navigation>
+                            <div class=footer-wdgets__heading--line>
+                                <h4 class=footer-widgets__heading>Popular Tags</h4>
+                            </div>
+                            <a class=tag href="#">Bakery</a>
+                            <a class=tag href="#">Dairy</a>
+                            <a class=tag href="#">Beverages</a>
+                            <a class=tag href="#">Frozen</a>
+                            <a class=tag href="#">Neutraceuticals</a>
+                            <a class=tag href="#">Pickles</a>
+                            <a class=tag href="#">Condiments</a>
+                            <a class=tag href="#">Frozen</a>
+                            <a class=tag href="#">Condiments</a>
+                            <a class=tag href="#">Frozen</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12  col-sm-3">
+                        <div class=footer-widgets__navigation>
+                            <div class=footer-wdgets__heading--line>
+                                <h4 class=footer-widgets__heading>Contact Us</h4>
+                            </div>
+                            <a class=footer__link href="#">Food Co-Packaging</a>
+                            <br>
+                            G-xx, Basement
+                            <br>
+                            South Ex
+                            <br>
+                            New Delhi - 110002
+                            <br>
+                            India
+                            <br>
+                            <a class=footer__link--small href=contact-2.html>View Google map <span class="glyphicon glyphicon-chevron-right glyphicon--footer-small"></span></a>
+                            <br>
+                            <br>
+                            <a class=footer__link href="#"><span class="glyphicon glyphicon-earphone glyphicon--footer"></span> +386 31 567 537</a>
+                            <br>
+                            <a class=footer__link href="#"><span class="glyphicon glyphicon-envelope glyphicon--footer"></span> hello@foodcopac.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=footer>
+            <div class=container>
+                <div class=row>
+                    <div class="col-xs-12  col-sm-6">
+                        <div class=footer__text--link>
+                            <a class=footer__link href="#">Food Co-Packaging</a> © Copyright 2014. All Rights Reserved.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>-->
+
+    <div class="modal fade" id="loginModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content  center">
+                <div class="modal-header" style="border-bottom:0px">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 style="text-align:center;margin-top:36px;margin-bottom:22px"><span class="light" style="font-weight:400">Login to </span><b>Food Co-Packaging</b></h3>
+                    <hr style="margin-bottom:10px;" class="divider">
+                </div>
+                <div class="modal-body" style="padding-bottom:0px">
+                    <div class=box>
+                        <div class=content>
+                            <div class=error style="margin-bottom:10px">
+                                <h5 style="color:red;margin:0"></h5>
+                            </div>
+                            <div class="form loginBox" style="display: block;">
+
+                                <form class="push-down-15" id="loginform" method="post" style="text-align:center" ng-submit="LoginFormSubmit()">
+                                    <div class="form-group">
+                                        <input type="email" ng-model="LoginData.username" class="form-control form-control--contact" placeholder="Username/Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" ng-model="LoginData.password" class="form-control form-control--contact" placeholder="Password" required>
+                                    </div>
+                                    <button type="submit" class="btn" style="color: #fff;background-color: orangered;border-color: orangered;">Log In</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=box>
+                        <div class="content forgotBox" style="display: none;">
+                            <div class=frgtPassError style="margin-bottom:10px">
+                                <h5 style="color:red;margin:0"></h5>
+                            </div>
+                            <div class="form">
+                                <p>Please enter your e-mail address &amp; we will send you a confirmation mail to reset your password.</p>
+                                <form method=post id="forgotPassword" ng-submit="ForgotPassFormSubmit()" style="text-align:center">
+                                    <input class=form-control type=email placeholder=Email name=email ng-model="ForgotPassData.email">
+                                    <input style="color: #fff;background-color: orangered;border-color: orangered;margin-top:10px" class="btn  btn-warning" type=submit value="SEND MY DETAILS!" name=commit>
+                                </form>
+                            </div>
+                            <div id=message style=display:none>
+                                <p>
+                                    An email is sent to your email address.<br /> Please check your email for resetting your password.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=modal-footer style="border-top:0px">
+                    <div class="forgot login-footer" style="display: block">
+                        <span><a href="javascript: showForgotForm();">Forgot your Password?</a></span>
+                    </div>
+                    <div class="forgot forgot-footer" style="display: none;">
+                        <a href="javascript: showLoginForm();">AAH, WAIT, I REMEMBER NOW!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="css/mainStyles.css" rel="stylesheet" />
+    <!--<script>
+    var cssList = ['css/Footer.css', 'zocial/css/zocial.css', 'css/ngProgress.css', 'css/RegistrationCSS.css'];
+    var cb = function () {
+        for (var item in cssList) {
+            var l = document.createElement('link'); l.rel = 'stylesheet';
+            l.href = cssList[item];;
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        }
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+    webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(cb);
+    else window.addEventListener('load', cb);
+    </script>-->
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mainMin.js"></script>
+
+    <!--<script>
+    $(function () {
+       
+    });
+    </script>-->
+</body>
+</html>
