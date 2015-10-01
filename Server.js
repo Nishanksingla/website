@@ -74,7 +74,7 @@ app.use(serveStatic(__dirname + '/app', { 'maxAge': 0 }));
 
 
 app.use(logger('combined', { stream: accessLogStream }));
-mongoose.connect('mongodb://localhost:27017/newNishank');
+mongoose.connect('mongodb://54.200.211.174:27017/newNishank');
 console.log("Connected to MongoDB");
 
 var productSchema = mongoose.Schema({
